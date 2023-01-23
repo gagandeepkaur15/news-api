@@ -33,9 +33,13 @@ class _FeedState extends State<Feed> {
     var jsonData = json.decode(response.body);
     var jsonArray = jsonData['data'];
 
-    List<dataClass> postList = []; //countries
+    List<dataClass> postList = [];
     for (var i in jsonArray) {
-      dataClass data = dataClass(title: i['title']); //country
+      dataClass data = dataClass(
+          title: i['title'],
+          author: i['author'],
+          description: i['description'],
+          mediaslug: i['mediaslug']);
       postList.add(data);
     }
     print(postList);
@@ -106,11 +110,7 @@ class _FeedState extends State<Feed> {
                             image: DecorationImage(
                               fit: BoxFit.cover,
                               image: NetworkImage(
-                                snapshot.data!
-                                    .elementAt(index)
-                                    .mediaslug
-                                    .toString(),
-                              ),
+                                  snapshot.data!.elementAt(index).mediaslug!),
                             ),
                           ),
                         ),

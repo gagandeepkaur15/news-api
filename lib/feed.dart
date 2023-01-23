@@ -102,11 +102,15 @@ class _FeedState extends State<Feed> {
                         Container(
                           width: size.width,
                           height: 30.h,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             image: DecorationImage(
                               fit: BoxFit.cover,
                               image: NetworkImage(
-                                  'https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2FtcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60'),
+                                snapshot.data!
+                                    .elementAt(index)
+                                    .mediaslug
+                                    .toString(),
+                              ),
                             ),
                           ),
                         ),
@@ -127,7 +131,7 @@ class _FeedState extends State<Feed> {
                               width: 2.5.h,
                             ),
                             Text(
-                              'Agrishots',
+                              snapshot.data!.elementAt(index).author.toString(),
                               style: TextStyle(
                                 shadows: const [
                                   Shadow(
@@ -202,7 +206,10 @@ class _FeedState extends State<Feed> {
                         Padding(
                           padding: EdgeInsets.fromLTRB(2.h, 0.h, 1.5.h, 0.h),
                           child: Text(
-                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+                            snapshot.data!
+                                .elementAt(index)
+                                .description
+                                .toString(),
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 10.sp,
